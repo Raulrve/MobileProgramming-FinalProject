@@ -9,26 +9,10 @@
     android:orientation="vertical">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gallery_number"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:textStyle="bold"/>
-
-
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclerview_gallery_images"/>
-
+        android:onClick="changeAct"
+        android:text="Button" />
 </LinearLayout>
