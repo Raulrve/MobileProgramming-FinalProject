@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/settingsButton"
+        android:title="@string/settingsButton"/>
+    <item android:id="@+id/homeButton"
+        android:title="@string/homeButton"/>
+</menu>

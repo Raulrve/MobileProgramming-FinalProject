@@ -1,15 +1,20 @@
 package com.example.finalproject;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -18,14 +23,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.GroundOverlay;
-import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -48,6 +52,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
+        // initialize the map system and the view
         mapFragment.getMapAsync(this);
 
 
@@ -76,7 +81,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         onMapClickListener = new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng arg0) {
-                String result =  "Lat: " + arg0.latitude + "\nLng: " + arg0.longitude;
+                String result = "Lat: " + arg0.latitude + "\nLng: " + arg0.longitude;
                 resultText.setText(result);
 
             }
@@ -85,7 +90,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public boolean onMarkerClick(Marker arg0) {
                 LatLng position = arg0.getPosition();
-                String result =  "Latitude: " + position.latitude + "\nLongitude: " + position.longitude;
+                String result = "Latitude: " + position.latitude + "\nLongitude: " + position.longitude;
                 resultText.setText(result);
                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
                 return true;
@@ -96,9 +101,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         onGroundOverlayClickListener = new GoogleMap.OnGroundOverlayClickListener() {
             @Override
             public void onGroundOverlayClick(GroundOverlay groundOverlay) {
-                String result =  "Ground overlay clicked";
+                String result = "Ground overlay clicked";
                 String overlayTag = (String) groundOverlay.getTag();
-                if (overlayTag == "Love"){
+                if (overlayTag == "Love") {
                     Toast.makeText(getApplicationContext(), overlayTag, Toast.LENGTH_LONG).show();
                     resultText.setText(result);
                 }
@@ -107,7 +112,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-// To manipulate map once available
+    // To manipulate map once available
     @Override
     public void onMapReady(GoogleMap googleMap) {
         googleMap = googleMap;
@@ -134,6 +139,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         googleMap.setMyLocationEnabled(true);
 
         // to customize map
+        /*
         try {
             boolean success = googleMap.setMapStyle(
                     MapStyleOptions.loadRawResourceStyle(this, R.raw.design));
@@ -144,25 +150,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } catch (Resources.NotFoundException e) {
             Log.e("styleCheck", "Can't find style. Error: ", e);
         }
+
+         */
         //Satellite Mode
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        //map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        //map.setMapType(GoogleMap.MAP_TYPE_NONE);
-        //map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        //map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
         // Add LatLng objects
         LatLng sydney = new LatLng(-34, 151);
-        LatLng love = new LatLng(30.446032, -84.299073);
-        LatLng tal = new LatLng(30.4383, -84.2807);
-
-        // Add a marker
-        googleMap.addMarker(new MarkerOptions()
-                .position(tal)
-                .title("Marker in Tallahassee")
-                .snippet("Welcome to the City")
-        );
-
 
         // To animate:
 
@@ -173,6 +167,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.settingsButton) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.homeButton) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
 
     }
+}
