@@ -2,9 +2,12 @@ package com.example.finalproject;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class GalleryActivity extends Activity {
+public class GalleryActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     GalleryAdapter galleryAdapter;
@@ -76,5 +79,24 @@ public class GalleryActivity extends Activity {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.settingsButton) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.homeButton) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }
