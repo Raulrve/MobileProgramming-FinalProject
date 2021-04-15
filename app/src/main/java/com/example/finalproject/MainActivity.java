@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void openGalleryActivity(){
-        //Intent intent = new Intent(this, GalleryActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(), GalleryActivity.class);
+        startActivity(intent);
     }
 
     public void openEmergencyActivity(){
