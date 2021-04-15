@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="title_main_activity">MainActivity</string>
+    <string name="title_maps_activity">MapsActivity</string>
+    <string name="settingsButton">Settings</string>
+    <string name="homeButton">Home</string>
+    <string name="welcome">Welcome To Your Guardian!</string>
+    <string name="firstName">What is your First Name?</string>
+    <string name="lastName">What is your Last Name?</string>
+    <string name="birthday">When is your birthday?</string>
+    <string name="emergencyContact">What is the name and number of your Emergency Contact?</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
 </resources>
