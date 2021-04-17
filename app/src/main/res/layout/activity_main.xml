@@ -5,29 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dateTimeTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView"  />
+
+
 
     <ImageButton
         android:id="@+id/photoButton"
         android:layout_width="156dp"
         android:layout_height="141dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="44dp"
         android:background="@drawable/photoalbum"
         app:layout_constraintEnd_toStartOf="@+id/gpsButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dateTimeTextview" />
 
     <ImageButton
         android:id="@+id/gpsButton"
         android:layout_width="124dp"
         android:layout_height="147dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:background="@drawable/gps_logo"
         android:contentDescription="gpsLogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dateTimeTextview" />
 
     <ImageButton
         android:id="@+id/phoneButton"
@@ -51,16 +77,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gpsButton" />
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="306dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

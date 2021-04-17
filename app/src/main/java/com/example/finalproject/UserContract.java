@@ -17,14 +17,12 @@ public class UserContract {
 
     int[] mListItems;
 
-//    public static boolean checkUser (Context context, String firstname, String password){
-//        //context.getContentResolver().query();
-//        return true;
-//    }
 
     public static void addUser(Context context, ContentValues values)
     {
-        context.getContentResolver().insert(UserContentProvider.CONTENT_URI, values);
+        UserContentProvider.MainDatabaseHelper db = new UserContentProvider.MainDatabaseHelper(context);
+        db.getWritableDatabase().insert(UserContentProvider.TABLE_NAME, null, values);
+        db.close();
     }
 
     public static Cursor queryUser(Context context,String firstname)
@@ -35,7 +33,7 @@ public class UserContract {
 
     public static Cursor queryDatabase(Context context){
         UserContentProvider.MainDatabaseHelper db = new UserContentProvider.MainDatabaseHelper(context);
-        return db.getReadableDatabase().rawQuery("select rowid _id,* from " + UserContentProvider.TABLE_NAME, null);
+        return db.getReadableDatabase().rawQuery("select * from " + UserContentProvider.TABLE_NAME, null);
     }
 
     public static void removeUser(Context context, String empId){

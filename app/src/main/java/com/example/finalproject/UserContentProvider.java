@@ -11,7 +11,7 @@ import android.net.Uri;
 
 public class UserContentProvider extends ContentProvider {
     public final static String DBNAME = "user.db";
-    public final static String TABLE_NAME = "users";
+    public final static String TABLE_NAME = "Guardian_Profile";
     public final static String COLUMN_FIRSTNAME = "firstname";
     public final static String COLUMN_LASTNAME = "lastname";
     public final static String COLUMN_BIRTHDAY = "birthday";
@@ -25,28 +25,36 @@ public class UserContentProvider extends ContentProvider {
 
     private MainDatabaseHelper mOpenHelper;
 
+
     protected static final class MainDatabaseHelper extends SQLiteOpenHelper {
-        MainDatabaseHelper(Context context) { super(context, DBNAME , null, 1);
+
+        private final String SQL_CREATE_MAIN = " CREATE TABLE " +
+                TABLE_NAME +
+                " ( " +
+                COLUMN_FIRSTNAME + " TEXT PRIMARY KEY, " +
+                COLUMN_LASTNAME + " TEXT , " +
+                COLUMN_BIRTHDAY + " TEXT , " +
+                COLUMN_EMERGENCYNAME + " TEXT , " +
+                COLUMN_EMERGENCYPHONE + " TEXT ) " ;
+
+        MainDatabaseHelper(Context context) {
+
+            super(context, DBNAME , null, 1);
+
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL(SQL_CREATE_MAIN); }
+
+            db.execSQL(SQL_CREATE_MAIN);
+        }
+
         public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
 
             onCreate(db);
         }
 
     }
-    private static final String SQL_CREATE_MAIN = " CREATE TABLE " +
-            TABLE_NAME +
-            " ( " +
-            COLUMN_FIRSTNAME + " TEXT PRIMARY KEY, " +
-            COLUMN_LASTNAME + " TEXT , " +
-            COLUMN_BIRTHDAY + " TEXT , " +
-            COLUMN_EMERGENCYNAME + " TEXT , " +
-            COLUMN_EMERGENCYPHONE + " TEXT ) " ;
-
 
     @Override
     public boolean onCreate() {
@@ -83,6 +91,7 @@ public class UserContentProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {return null;}
+
 
 
 }

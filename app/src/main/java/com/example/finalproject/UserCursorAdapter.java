@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
@@ -20,6 +21,7 @@ public class UserCursorAdapter {
             List<Map<String, String>> list = new ArrayList<>();
             while (cursor.moveToNext()) {
                 String firstname = cursor.getString(cursor.getColumnIndex(UserContentProvider.COLUMN_FIRSTNAME));
+                Log.e("=====", "=====firstname : " +firstname);
                 cursor.getString(1);
                 HashMap<String, String> item = new HashMap<>();
                 item.put(UserContentProvider.COLUMN_FIRSTNAME, firstname);

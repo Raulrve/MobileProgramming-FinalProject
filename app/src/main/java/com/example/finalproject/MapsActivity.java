@@ -138,20 +138,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         googleMap.setMyLocationEnabled(true);
 
-        // to customize map
-        /*
-        try {
-            boolean success = googleMap.setMapStyle(
-                    MapStyleOptions.loadRawResourceStyle(this, R.raw.design));
 
-            if (!success) {
-                Log.e("styleCheck", "Style parsing failed.");
-            }
-        } catch (Resources.NotFoundException e) {
-            Log.e("styleCheck", "Can't find style. Error: ", e);
-        }
-
-         */
         //Satellite Mode
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 

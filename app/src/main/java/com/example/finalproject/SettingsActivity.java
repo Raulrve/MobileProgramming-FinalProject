@@ -3,6 +3,7 @@ package com.example.finalproject;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -74,12 +75,9 @@ public class SettingsActivity extends AppCompatActivity {
                     values.put(UserContentProvider.COLUMN_EMERGENCYNAME, emergencyContactTextName.getText().toString());
                     values.put(UserContentProvider.COLUMN_EMERGENCYPHONE, emergencyContactTextName.getText().toString());
 
-                   // UserContract.addUser(getApplicationContext(), values);
-                    //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    //intent.putExtra("First Name", firstNameText.getText().toString());
+                    UserContract.addUser(getApplicationContext(), values);
+                    finish();
 
-                    //startActivity(intent);
-                    openMainActivity();
 
                 }
             }
@@ -87,9 +85,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
     public void openMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
+
 }
 
 
