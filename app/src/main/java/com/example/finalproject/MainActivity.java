@@ -3,9 +3,13 @@ package com.example.finalproject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -106,15 +110,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openEmergencyActivity(){
-        // Intent intent = new Intent(this, EmergencyActivity.class);
-        // startActivity(intent);
-        /*if(!TextUtils.isEmpty(phoneNumberToCall)) {
-            Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:"+phoneNumberToCall));
-            startActivity(intent);
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE}, 101);
         } else {
-            Toast.makeText(this, "No phone number found...", Toast.LENGTH_SHORT).show();
-        }*/
+            Uri callUri = Uri.parse("tel://911");
+            Intent callIntent = new Intent(Intent.ACTION_CALL,callUri);
+            callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+            startActivity(callIntent);
+        }
+
+
+
+
     }
     public void openPhoneActivity(){
 
